@@ -6,7 +6,8 @@
   "scripts": {
     "start": "NODE_ENV=production node index.js",
     "dev": "node -r dotenv/config index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "author": "Martin Fracker <martin.frackerjr@gmail.com>",
   "license": "GPL-3.0-or-later",
@@ -21,9 +22,15 @@
   },
   "devDependencies": {
     "@types/koa__router": "^8.0.11",
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
   },
   "overrides": {
     "mailgun.js": "^8.0.0"
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write"
   }
 }
