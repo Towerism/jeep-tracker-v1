@@ -11,7 +11,8 @@ const {
   MAILGUN_APIKEY,
   MAILGUN_DOMAIN,
   EMAIL_FROM,
-  EMAIL_TO
+  EMAIL_TO,
+  PORT = 3000
 } = process.env
 
 const transport = nodemailer.createTransport(mg({
@@ -62,4 +63,4 @@ router.post('/tracking-email/:von/:lastName', async (ctx) => {
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-app.listen(3000)
+app.listen(PORT)
