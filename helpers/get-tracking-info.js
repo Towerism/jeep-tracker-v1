@@ -1,6 +1,6 @@
 const axios = require("axios").default;
 
-exports.getTrackingInfo = async (von, lastName) => {
+exports.getTrackingInfo = async function (von, lastName) {
   const { data } = await axios.get(
     `https://www.jeep.com/hostz/cots/order-status/${von}/${lastName}`
   );
