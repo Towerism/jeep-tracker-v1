@@ -16,7 +16,6 @@ exports.installMailer = (app, { mailgun: { apiKey, domain }, from, to }) => {
       from,
       to,
     },
-    send: true,
     transport,
   });
   app.context.email = email;
