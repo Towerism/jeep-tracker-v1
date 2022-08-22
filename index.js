@@ -23,13 +23,13 @@ const transport = nodemailer.createTransport(
     },
   })
 );
-
 const email = new Email({
   message: {
     from: EMAIL_FROM,
   },
   transport,
 });
+app.context.email = email;
 
 const router = new Router();
 router.post("/tracking-email/:von/:lastName", async (ctx) => {
@@ -55,7 +55,7 @@ router.post("/tracking-email/:von/:lastName", async (ctx) => {
     vin,
     von,
   };
-  await email.send({
+  await ctx.email.send({
     template: "jeep-tracking",
     message: {
       to: EMAIL_TO,
@@ -64,6 +64,10 @@ router.post("/tracking-email/:von/:lastName", async (ctx) => {
   });
 
   ctx.body = { success: true };
+});
+
+router.get("/", (ctx) => {
+  ctx.body = { path: "/" };
 });
 
 app.use(router.routes());
