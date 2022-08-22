@@ -31,19 +31,26 @@ By default, the server will run on port 3000.
 
 ## Demo
 
-Send a POST request with a VON and a Last Name:
+### Send an email with tracking data
+
+> POST /tracking-email/:von/:lastName
 
 ```
-POST http://localhost:3000/tracking-email/12345678/Smith
-{ "success": true }
+$ curl -X POST \
+  http://localhost:3000/tracking-email/12345678/Smith
+{"success":true}
 ```
 
 and the tracking information with that customer order will be pulled and sent to the email specified in the `EMAIL_TO` environment variable
 
-Send a GET request with a VON and a last Name:
+#### Get tracking data in JSON format:
+
+> GET /tracking/:von/:lastName
 
 ```
-GET http://localhost:3000/tracking/12345678/Smith
+$ curl -X GET \
+  http://localhost:3000/tracking/12345678/Smith
+{"success":true}
 {
   "statusCode": "D1",
   "statusDesc": "Scheduled",
