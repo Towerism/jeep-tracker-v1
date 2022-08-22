@@ -3,9 +3,9 @@ const { fetchPdfContent } = require("./fetch-pdf-content");
 exports.getBuildSheet = async (vin) => {
   const buildSheetUrl = `https://www.jeep.com/webselfservice/BuildSheetServlet?vin=${vin}`;
   const content = await fetchPdfContent(buildSheetUrl);
-  const found = content.find((c) => c.str === "Equipment Listing");
+  console.log("contentLength", content.length);
   return {
-    buildSheetFound: !!found,
+    buildSheetFound: content.length > 5,
     buildSheetUrl,
   };
 };
