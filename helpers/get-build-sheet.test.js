@@ -1,4 +1,9 @@
-const { getBuildSheet } = require("./get-build-sheet");
+const { getHelpers } = require("../test-utils/get-helpers");
+
+let helpers;
+beforeEach(() => {
+  helpers = getHelpers();
+});
 
 test("reports build sheet found", async () => {
   // test vins: https://www.jlwranglerforums.com/forum/threads/2023-build-sheets-are-being-detected-test-builds-showing-equipment-options-to-expect-in-2023-models.95500/
@@ -10,7 +15,7 @@ test("reports build sheet found", async () => {
     "1C4JJXP60PW500025",
     "1C4HJXENXPW500039",
   ].map(async (vin) => {
-    const { buildSheetFound } = await getBuildSheet(vin);
+    const { buildSheetFound } = await helpers.getBuildSheet(vin);
 
     expect(buildSheetFound).toBe(true);
   });
@@ -19,7 +24,7 @@ test("reports build sheet found", async () => {
 });
 
 test("reports build sheet NOT found", async () => {
-  const { buildSheetFound } = await getBuildSheet("1234567890W500000");
+  const { buildSheetFound } = await helpers.getBuildSheet("1234567890W500000");
 
   expect(buildSheetFound).toBe(false);
 });
