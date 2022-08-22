@@ -43,7 +43,7 @@ $ curl -X POST \
 
 and the tracking information with that customer order will be pulled and sent to the email specified in the `EMAIL_TO` environment variable
 
-#### Get tracking data in JSON format:
+### Get tracking data in JSON format:
 
 > GET /tracking/:von/:lastName
 
