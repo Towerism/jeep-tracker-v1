@@ -50,7 +50,6 @@ and the tracking information with that customer order will be pulled and sent to
 ```
 $ curl -X GET \
   http://localhost:3000/tracking/12345678/Smith
-{"success":true}
 {
   "statusCode": "D1",
   "statusDesc": "Scheduled",
