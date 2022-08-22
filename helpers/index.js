@@ -11,9 +11,5 @@ exports.installHelpers = (app) => {
     aggregateTrackingInfo,
   };
 
-  Object.keys(helpers).forEach((h) => {
-    helpers[h] = helpers[h].bind(helpers);
-  });
-
   app.context.helpers = helpers;
 };
