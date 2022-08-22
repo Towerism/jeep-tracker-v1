@@ -6,6 +6,5 @@ exports.getWindowSticker = async (vin) => {
   return {
     windowStickerFound: content.length > 1,
     windowStickerUrl,
-    content,
   };
 };
