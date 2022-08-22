@@ -3,9 +3,7 @@ const app = new Koa();
 const Router = require("@koa/router");
 
 const axios = require("axios").default;
-const Email = require("email-templates");
-const nodemailer = require("nodemailer");
-const mg = require("nodemailer-mailgun-transport");
+const { installMailer } = require("./mailer");
 
 const {
   MAILGUN_APIKEY,
@@ -15,21 +13,14 @@ const {
   PORT = 3000,
 } = process.env;
 
-const transport = nodemailer.createTransport(
-  mg({
-    auth: {
-      api_key: MAILGUN_APIKEY,
-      domain: MAILGUN_DOMAIN,
-    },
-  })
-);
-const email = new Email({
-  message: {
-    from: EMAIL_FROM,
+installMailer(app, {
+  mailgun: {
+    apiKey: MAILGUN_APIKEY,
+    domain: MAILGUN_DOMAIN,
   },
-  transport,
+  from: EMAIL_FROM,
+  to: EMAIL_TO,
 });
-app.context.email = email;
 
 const router = new Router();
 router.post("/tracking-email/:von/:lastName", async (ctx) => {
@@ -57,9 +48,6 @@ router.post("/tracking-email/:von/:lastName", async (ctx) => {
   };
   await ctx.email.send({
     template: "jeep-tracking",
-    message: {
-      to: EMAIL_TO,
-    },
     locals,
   });
 
