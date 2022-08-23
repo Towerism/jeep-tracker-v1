@@ -11,6 +11,7 @@ exports.installHelpers = (app) => {
     getWindowSticker,
     aggregateTrackingInfo,
     fetchPdfContent,
+    ctx: app.context,
   };
 
   app.context.helpers = helpers;

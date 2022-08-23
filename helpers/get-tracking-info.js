@@ -1,9 +1,22 @@
+const { compileClientWithDependenciesTracked } = require("pug");
+
 const axios = require("axios").default;
 
 exports.getTrackingInfo = async function (von, lastName) {
-  const { data } = await axios.get(
-    `https://www.jeep.com/hostz/cots/order-status/${von}/${lastName}`
-  );
+  let response;
+  let data;
+  try {
+    response = await axios.get(
+      `https://www.jeep.com/hostz/cots/order-status/${von}/${lastName}`
+    );
+    data = response.data;
+  } catch (err) {
+    this.ctx.throw(
+      404,
+      "There was an error retrieving the order status. Please check the VON and last name."
+    );
+  }
+
   const { orderstatus, vinDetails } = data;
   const yStatuses = orderstatus.filter(
     (status) => status.currentStatus === status.display
