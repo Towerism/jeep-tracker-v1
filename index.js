@@ -23,6 +23,19 @@ installMailer(app, {
   to: EMAIL_TO,
 });
 
+app.use(async (ctx, next) => {
+  try {
+    await next();
+  } catch (err) {
+    ctx.body = {
+      error: {
+        code: err.status,
+        message: err.message,
+      },
+    };
+  }
+});
+
 installQueries(app);
 installHelpers(app);
 installRoutes(app);
