@@ -6,4 +6,7 @@ exports.sendTrackingEmail = async (ctx) => {
 
   ctx.body = { success: true };
 };
-exports.sendTrackingEmail.path = "/tracking-email/:von/:lastName";
+Object.assign(exports.sendTrackingEmail, {
+  path: "/tracking-email/:von/:lastName",
+  method: "post",
+});

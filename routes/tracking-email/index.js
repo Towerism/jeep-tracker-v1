@@ -1,3 +1,1 @@
-const { sendTrackingEmail } = require("./send-tracking-email");
-
-exports.post = sendTrackingEmail;
+module.exports = { ...require("./send-tracking-email") };

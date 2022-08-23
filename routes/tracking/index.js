@@ -1,3 +1,1 @@
-const { getTracking } = require("./get-tracking");
-
-exports.get = getTracking;
+module.exports = { ...require("./get-tracking") };

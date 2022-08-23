@@ -4,8 +4,9 @@ const tracking = require("./tracking");
 
 function installRoutes(router, routes) {
   const routeKeys = Object.keys(routes);
-  for (routeMethod of routeKeys) {
-    const routeAction = routes[routeMethod];
+  for (routeKey of routeKeys) {
+    const routeAction = routes[routeKey];
+    const routeMethod = routeAction.method;
     const routePath = routeAction.path;
     router[routeMethod](routePath, routeAction);
   }
