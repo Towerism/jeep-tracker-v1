@@ -4,6 +4,7 @@ const app = new Koa();
 const { installMailer } = require("./mailer");
 const { installRoutes } = require("./routes");
 const { installHelpers } = require("./helpers");
+const { installQueries } = require("./queries");
 
 const {
   MAILGUN_APIKEY,
@@ -22,6 +23,7 @@ installMailer(app, {
   to: EMAIL_TO,
 });
 
+installQueries(app);
 installHelpers(app);
 installRoutes(app);
 
