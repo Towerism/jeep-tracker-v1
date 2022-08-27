@@ -1,5 +1,8 @@
 # Jeep Tracker
 
+> This is v1 which was designed to enable a user to send emails to themselves every hour.
+> v2 lives in [another repository](https://github.com/towerism/jeep-tracker) which allows a user to view the same information in a web page
+
 A server with a single endpoint that will pull tracking information for a Jeep customer order, and send it to a specified email. It aggregates data from the official Jeep tracker, and the build sheet and window sticker servelets.
 
 ## Requirements
